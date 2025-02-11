@@ -1,6 +1,6 @@
 import express from "express";
 import { register, login, logout, isVerify } from "../controller/userController.js";
-import { createBlog, deleteBlog, updateBlog, getUserBlogs } from "../controller/blogController.js";
+import { createBlog, deleteBlog, updateBlog, getUserBlogs, getAllBlogs } from "../controller/blogController.js";
 import { isAuthenticate } from "../middleware/authentication.js";
 
 const router = express.Router();
@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
 router.get("/isverify", isVerify);
 router.post("/register", register);
 router.post("/login", login);
+router.get("/getallblogs", getAllBlogs);
 router.get("/logout", logout);
 router.post("/create", isAuthenticate, createBlog);
 router.delete("/delete/:id", isAuthenticate, deleteBlog);
