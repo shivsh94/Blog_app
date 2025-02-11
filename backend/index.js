@@ -12,9 +12,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: process.env.CLIENT_URL, 
-    credentials: true
-})); 
+    origin: [process.env.CLIENT_URL, 'https://blog-app-beta-inky.vercel.app'], // Allow both env and hardcoded frontend URL
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Explicitly allow HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow custom headers
+}));
+
 
 connect();
 
