@@ -7,8 +7,8 @@ function Home() {
     const [blogs, setBlogs] = useState([]);
     const fetchBlogs = async () => {
         try {
-            const response = await axios.get("/getblogs");
-            // console.log(response.data);
+            const response = await axios.get("/getallblogs");
+            console.log(response.data);
             
 
             if (response.data.success) {
