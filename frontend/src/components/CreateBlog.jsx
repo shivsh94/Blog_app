@@ -89,7 +89,7 @@ const CreateBlog = ({ setIsEditOpen }) => {
                     <button
                         type="submit"
                         className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg 
-                hover:from-blue-600 hover:to-purple-700 transition-all font-bold shadow-md"
+                          hover:from-blue-600 hover:to-purple-700 transition-all font-bold shadow-md"
                         disabled={loading}
                     >
                         {loading ? <ClipLoader size={20} color="#fff" /> : "Create Blog"}

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Cards from "./Cards";
 import BlogCard from "./BlogCard";
 
 function Home() {
     const [blogs, setBlogs] = useState([]);
+    const navigate = useNavigate();
     // const [loading, setLoading] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);
     const fetchBlogs = async () => {
@@ -26,21 +26,6 @@ function Home() {
         // console.log("Blogs:", blogs);
     }, []);
 
-    const handleMyBlogs = async () => {
-        try {
-            const response = await axios.get("/getblogs");
-            // console.log(response.data);
-
-
-            if (response.data.success) {
-                setBlogs(response.data.blogs);
-
-            }
-        } catch (error) {
-            console.error("Error fetching blogs:", error);
-        }
-    };
-
 
     return (
         <div>
@@ -52,7 +37,7 @@ function Home() {
                         Create Blog
                     </button>
 
-                    <button onClick={handleMyBlogs} className="px-6 py-2 text-2xl bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 transition">
+                    <button onClick={() => navigate('/myblogs')} className="px-6 py-2 text-2xl bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 transition">
                         My Blogs
                     </button>
                 </div>
@@ -73,5 +58,6 @@ function Home() {
     );
 }
 import CreateBlog from "./CreateBlog";
+import { useNavigate } from "react-router-dom";
 
 export default Home;

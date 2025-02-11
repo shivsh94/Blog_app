@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { ClipLoader } from "react-spinners";
 import UpdateBlog from "./UpdateBlog";
+import { useLocation } from "react-router-dom";
 
 function BlogCard({ blog }) {
+    const location = useLocation();
     const [loading, setLoading] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,11 +32,13 @@ function BlogCard({ blog }) {
             <div className="relative p-6 border border-gray-300 rounded-lg shadow-lg bg-white transition-transform transform hover:scale-105 hover:shadow-xl">
                 <div className="flex justify-between items-center">
                     <h3 className="text-2xl font-bold text-gray-900">{blog.title}</h3>
+                    {location.pathname === "/myblogs" && (
                     <button
                         onClick={() => setIsEditOpen(true)}
                         className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
                         Edit Blog
                     </button>
+                    )}
                 </div>
 
                 <p className="text-gray-600 mt-2 line-clamp-3">{blog.content}</p>
@@ -50,6 +54,8 @@ function BlogCard({ blog }) {
                         Read More
                     </button>
 
+
+                    {location.pathname === "/myblogs" && (
                     <button
                         onClick={handleDelete}
                         disabled={loading}
@@ -57,6 +63,7 @@ function BlogCard({ blog }) {
                     >
                         {loading ? <ClipLoader size={20} color="#fff" /> : "Delete Blog"}
                     </button>
+                    )}
                 </div>
             </div>
 

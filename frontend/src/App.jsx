@@ -4,6 +4,7 @@ import Header from "./components/Header.jsx";
 import Home from "./components/Home.jsx";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import MyBlogs from "./components/MyBlogs.jsx";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "./features/Login/loginSlice.js";
@@ -51,6 +52,7 @@ function App() {
         {/* Protected Route */}
         <Route path="/" element={<ProtectedRoute />}>
           <Route index element={<Home />} />
+          <Route path="/myblogs" element={<MyBlogs />} />
         </Route>
       </Routes>
     </Router>
