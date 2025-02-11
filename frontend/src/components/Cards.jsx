@@ -1,27 +1,26 @@
 import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
 
 function Cards({ blog }) {
-  
-
-  // State for new blog creation
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     content: "",
   });
 
-  // Function to handle blog creation
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post("/create", formData);
       if (response.data.success) {
         toast.success("Blog created successfully");
-        window.location.reload(); 
+        window.location.reload();
       }
     } catch (error) {
-       console.error(error);
+      console.error(error);
 
       if (error.response) {
         const errorMessage = error.response.data.message || "Something went wrong. Please try again.";
@@ -39,6 +38,7 @@ function Cards({ blog }) {
         }
       }
     }
+    setLoading(false);
   };
 
   const handleChange = (e) => {
@@ -65,9 +65,10 @@ function Cards({ blog }) {
         />
         <button
           type="submit"
+          disabled={loading}
           className="w-full cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
         >
-          Submit
+          {loading ? <ClipLoader size={20} color="#fff" /> : "Submit"}
         </button>
       </div>
     </form>

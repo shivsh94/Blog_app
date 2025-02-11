@@ -70,6 +70,8 @@ export const updateBlog = async (req, res) => {
             }
 
         }, { new: true });
+
+        res.status(200).json({ success: true, message: "Blog updated successfully" });
     
     } catch (error) {
         console.log(error);
