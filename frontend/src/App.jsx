@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import {Toaster, toast} from 'react-hot-toast';
 
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = import.meta.env.VITE_URI;
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
