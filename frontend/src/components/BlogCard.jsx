@@ -41,8 +41,7 @@ function BlogCard({ blog }) {
                 <p className="text-sm text-gray-500 mt-3">
                     By: <span className="font-semibold">{blog.author_name}</span>
                 </p>
-
-                {/* Buttons: Read More & Delete */}
+                
                 <div className="flex justify-evenly mt-4">
                     <button
                         onClick={() => setIsModalOpen(true)}

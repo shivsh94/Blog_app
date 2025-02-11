@@ -3,11 +3,11 @@ import axios from "axios";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-hot-toast";
 
-const UpdateBlog = ({ blog, setIsEditOpen }) => {
+const CreateBlog = ({ setIsEditOpen }) => {
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
-        title: blog?.title || "",
-        content: blog?.content || ""
+        title: "",
+        content:""
     });
 
     const handleChange = (e) => {
@@ -18,7 +18,7 @@ const UpdateBlog = ({ blog, setIsEditOpen }) => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.put(`/update/${blog._id}`, {
+            const response = await axios.post("/create", {
                 title: formData.title,
                 content: formData.content
             });
@@ -92,7 +92,7 @@ const UpdateBlog = ({ blog, setIsEditOpen }) => {
                 hover:from-blue-600 hover:to-purple-700 transition-all font-bold shadow-md"
                         disabled={loading}
                     >
-                        {loading ? <ClipLoader size={20} color="#fff" /> : "Update Blog"}
+                        {loading ? <ClipLoader size={20} color="#fff" /> : "Create Blog"}
                     </button>
                 </form>
 
@@ -104,4 +104,4 @@ const UpdateBlog = ({ blog, setIsEditOpen }) => {
     );
 };
 
-export default UpdateBlog;
+export default CreateBlog;
