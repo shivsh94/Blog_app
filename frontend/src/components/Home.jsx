@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BlogCard from "./BlogCard";
+import CreateBlog from "./CreateBlog";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
     const [blogs, setBlogs] = useState([]);
     const navigate = useNavigate();
-    // const [loading, setLoading] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);
+
+
     const fetchBlogs = async () => {
         try {
             const response = await axios.get("/getallblogs");
@@ -14,7 +17,7 @@ function Home() {
 
 
             if (response.data.success) {
-                setBlogs(response.data.blogs);
+                setBlogs(response.data.blogs);   
 
             }
         } catch (error) {
@@ -57,7 +60,6 @@ function Home() {
         </div>
     );
 }
-import CreateBlog from "./CreateBlog";
-import { useNavigate } from "react-router-dom";
+
 
 export default Home;

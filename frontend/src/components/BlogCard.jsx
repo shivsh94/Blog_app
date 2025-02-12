@@ -32,7 +32,7 @@ function BlogCard({ blog }) {
 
     return (
         <>
-            <div className="relative p-6 border border-gray-300 rounded-lg shadow-lg bg-white transition-transform transform hover:scale-105 hover:shadow-xl">
+            <div className="relative p-2 border border-gray-300 rounded-lg shadow-lg bg-white transition-transform transform hover:scale-105 hover:shadow-xl">
                 <div className="flex justify-between items-center">
                     <h3 className="text-2xl font-bold text-gray-900">{blog.title}</h3>
                     {location.pathname === "/myblogs" && (
@@ -44,12 +44,12 @@ function BlogCard({ blog }) {
                     )}
                 </div>
 
-                <p className="text-gray-600 mt-2 line-clamp-3">{blog.content}</p>
+                <p className="text-gray-600 mt-2 h-20 line-clamp-3">{blog.content.length > 150 ? blog.content.slice(0, 150) + "..." : blog.content}</p>
                 <p className="text-sm text-gray-500 mt-3">
                     By: <span className="font-semibold">{blog.author_name}</span>
                 </p>
 
-                <div className="flex justify-evenly mt-4">
+                <div className="flex justify-evenly mt-4 ">
                     <button onClick={() => setIsCommentOpen(true)} className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-all">
                         Comment
                     </button>
@@ -71,14 +71,15 @@ function BlogCard({ blog }) {
                         </button>
                     )}
                 </div>
+
             </div>
 
-             
+
             {isCommentOpen && (
                 <Comments
                     blogId={blog._id}
                     setIsCommentOpen={setIsCommentOpen}
-                    onCommentSuccess={(newComment) => {    
+                    onCommentSuccess={(newComment) => {
                         toast.success("Comment added successfully!");
                         setComments([...comments, newComment]);
                         setIsCommentOpen(false);
@@ -86,7 +87,7 @@ function BlogCard({ blog }) {
                 />
             )}
 
-            
+
             {isModalOpen && (
                 <div
                     className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-md z-50 transition-opacity duration-300"
@@ -117,11 +118,25 @@ function BlogCard({ blog }) {
                         <p className="text-md mt-5 text-center text-gray-400 font-semibold tracking-wider shadow-md">
                             By: <span className="text-blue-300 font-bold">{blog.author_name}</span>
                         </p>
+                        <div className="mt-4">
+
+                            <h4 className="text-lg font-semibold text-gray-700">Comments:</h4>
+                            {blog.comment.length > 0 ? (
+                                blog.comment.map((blog) => (
+                                    <div key={blog._id} className="flex items-center gap-2 mt-2">
+                                        <span className="text-gray-500 font-semibold">{blog.author_name}:</span>
+                                        <p className="text-gray-600">{blog.comment}</p>
+                                    </div>
+                                ))
+                            ) : (
+                                <p className="text-gray-500">No comments available</p>
+                            )}
+                        </div>
                     </div>
                 </div>
             )}
 
-             
+
             {isEditOpen && <UpdateBlog blog={blog} setIsEditOpen={setIsEditOpen} />}
         </>
     );

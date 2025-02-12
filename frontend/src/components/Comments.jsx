@@ -12,7 +12,7 @@ const Comments = ({ blogId, setIsCommentOpen }) => {
         const fetchComments = async () => {
             try {
                 const response = await axios.get(`/getcomments/${blogId}`);
-                console.log("Fetched comments:", response.data);
+                // console.log("Fetched comments:", response.data);
 
                 if (response.data.success) {
                     setComments(Array.isArray(response.data.comments) ? response.data.comments : []);
@@ -42,6 +42,8 @@ const Comments = ({ blogId, setIsCommentOpen }) => {
         setLoading(true);
         try {
             const response = await axios.post(`/comment/${blogId}`, { comment: formData.comment });
+            console.log("Comment response:", response.data);
+
 
             if (response.data.success) {
                 toast.success("Comment added!");
@@ -70,7 +72,7 @@ const Comments = ({ blogId, setIsCommentOpen }) => {
                 className="relative bg-gray-900 border border-gray-700 backdrop-blur-xl shadow-2xl rounded-2xl w-full max-w-md p-8 animate-fadeIn scale-95 transition-all duration-300 hover:scale-100"
                 onClick={(e) => e.stopPropagation()}
             >
-                 
+
                 <button
                     onClick={() => setIsCommentOpen(false)}
                     className="absolute top-4 right-4 text-gray-300 hover:text-white text-3xl font-bold transition duration-200"
@@ -78,24 +80,7 @@ const Comments = ({ blogId, setIsCommentOpen }) => {
                     &times;
                 </button>
 
-                
-                <div className="max-h-64 overflow-y-auto space-y-4 mb-4">
-                    {comments.length > 0 ? (
-                        comments
-                            .filter(c => c && c.comment)
-                            .map((c, index) => (
-                                <div key={index} className="p-3 bg-gray-800 rounded-lg border border-gray-600">
-                                    <p className="text-gray-100">{c.comment}</p>
-                                    <p className="text-sm text-gray-400 mt-1">By: {c.username || "Anonymous"}</p>
-                                </div>
-                            ))
-                    ) : (
-                        <p className="text-gray-400 text-center">No comments yet.</p>
-                    )}
-                </div>
 
-
-                 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label className="block text-gray-300 font-medium">Comment:</label>
@@ -118,6 +103,22 @@ const Comments = ({ blogId, setIsCommentOpen }) => {
                         {loading ? <ClipLoader size={20} color="#fff" /> : "Submit Comment"}
                     </button>
                 </form>
+
+                <div className="max-h-64 overflow-y-auto mt-5 space-y-4 mb-4">
+                    {comments.length > 0 ? (
+                        comments
+                            .filter(c => c && c.comment)
+                            .map((c, index) => (
+                                <div key={index} className="p-3 bg-gray-800 rounded-lg border border-gray-600">
+                                    <p className="text-gray-100">{c.comment}</p>
+                                    <p className="text-sm text-gray-400 mt-1">By: {c.author_name || "Anonymous"}</p>
+                                </div>
+                            ))
+                    ) : (
+                        <p className="text-gray-400 text-center">No comments yet.</p>
+                    )}
+                </div>
+
             </div>
         </div>
     );
