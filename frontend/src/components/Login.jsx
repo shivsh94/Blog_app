@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from '../features/Login/loginSlice.js'
 import { toast } from 'react-hot-toast'
 import { ClipLoader } from 'react-spinners'
@@ -17,6 +17,11 @@ function Login() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const user = useSelector(state => state.login.currentUser);
+
+    if(user){
+       return navigate('/');
+    }
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
