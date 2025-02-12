@@ -42,7 +42,8 @@ const UpdateBlog = ({ blog, setIsEditOpen }) => {
             <div
                 className="relative bg-gray-900 bg-opacity-90 border border-gray-700 backdrop-blur-xl shadow-2xl rounded-2xl
         w-full max-w-md p-8 animate-fadeIn scale-95 transition-all duration-300 hover:scale-100"
-                onClick={(e) => e.stopPropagation()}  
+                onClick={(e) => e.stopPropagation()} 
+            >
                 {/* Close Button */}
                 <button
                     onClick={() => setIsEditOpen(false)}
