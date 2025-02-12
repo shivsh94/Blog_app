@@ -32,9 +32,9 @@ function BlogCard({ blog }) {
 
     return (
         <>
-            <div className="relative p-2 border border-gray-300 rounded-lg shadow-lg bg-white transition-transform transform hover:scale-105 hover:shadow-xl">
+            <div className="relative p-2 mt-15 rounded-lg shadow-lg bg-gray-900 bg-opacity-90 border border-gray-700 transition-transform transform hover:scale-105 hover:shadow-xl">
                 <div className="flex justify-between items-center">
-                    <h3 className="text-2xl font-bold text-gray-900">{blog.title}</h3>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-300 to-purple-400 text-transparent bg-clip-text drop-shadow-lg">{blog.title}</h3>
                     {location.pathname === "/myblogs" && (
                         <button
                             onClick={() => setIsEditOpen(true)}
@@ -44,7 +44,7 @@ function BlogCard({ blog }) {
                     )}
                 </div>
 
-                <p className="text-gray-600 mt-2 h-20 line-clamp-3">{blog.content.length > 150 ? blog.content.slice(0, 150) + "..." : blog.content}</p>
+                <p className="mt-2 h-20 text-lg leading-relaxed text-gray-200 font-medium tracking-wide line-clamp-3">{blog.content.length > 150 ? blog.content.slice(0, 150) + "..." : blog.content}</p>
                 <p className="text-sm text-gray-500 mt-3">
                     By: <span className="font-semibold">{blog.author_name}</span>
                 </p>

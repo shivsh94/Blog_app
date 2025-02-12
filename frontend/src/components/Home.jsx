@@ -31,11 +31,11 @@ function Home() {
 
 
     return (
-        <div>
+        <div className="min-h-screen w-full bg-black pt-10">
 
-            <div className="h-25 w-full mt-10 text-3xl font-serif flex flex-col gap-5 justify-center items-center">
-                <p>Write Your Thoughts Here!!</p>
-                <div className="flex gap-5">
+            <div className="h-25 w-full pt-15 text-3xl font-sans flex flex-col gap-5 justify-center items-center">
+                <p className="text-white font-bold font-sans">Write Your Thoughts Here!!</p>
+                <div className="flex gap-5 mt-10">
                     <button onClick={() => setIsEditOpen(true)} className="px-6 py-2 text-2xl bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition">
                         Create Blog
                     </button>
