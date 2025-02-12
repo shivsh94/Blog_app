@@ -17,6 +17,7 @@ export const createBlog = async (req, res) => {
         content,
         author_id: author._id,
         author_name: author.name,
+        comment: []
     });
     res
         .status(201)
@@ -111,3 +112,49 @@ export const getAllBlogs = async (req, res) => {
     }
 }
 
+export const commentOnBlog = async (req, res) => {
+    try {
+        const blogID = req.params.id;
+        const { comment } = req.body;
+
+        if (!comment) {
+            return res.status(404).json({ message: "Comment is required" });
+        }
+
+        const blog = await Blog.findById(blogID);
+        if (!blog) {
+            return res.status(404).json({ message: "Blog not found" });
+        }
+
+        const author = await User.findById(req.userID);
+
+        blog.comment.push({
+            comment,
+            author_name: author.name,
+            author_id: author._id
+        });
+
+        await blog.save();
+
+        return res.status(200).json({ success: true, message: "Commented on blog successfully" });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Something went wrong in commenting on blog" });
+    }
+}
+
+export const getComments = async (req, res) => {
+    try {
+        const blogID = req.params.id;
+
+        const blog = await Blog.findById(blogID);
+        if (!blog) {
+            return res.status(404).json({ message: "Blog not found" });
+        }
+           res.status(200).json({ success: true, comments: blog.comment });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Something went wrong in fetching comments" });
+    }
+}

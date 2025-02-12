@@ -1,6 +1,6 @@
 import express from "express";
 import { register, login, logout, isVerify } from "../controller/userController.js";
-import { createBlog, deleteBlog, updateBlog, getUserBlogs, getAllBlogs } from "../controller/blogController.js";
+import { createBlog, deleteBlog, updateBlog, getUserBlogs, getAllBlogs, commentOnBlog,getComments } from "../controller/blogController.js";
 import { isAuthenticate } from "../middleware/authentication.js";
 
 const router = express.Router();
@@ -18,5 +18,7 @@ router.post("/create", isAuthenticate, createBlog);
 router.delete("/delete/:id", isAuthenticate, deleteBlog);
 router.put("/update/:id", isAuthenticate, updateBlog);
 router.get("/getblogs",isAuthenticate, getUserBlogs); 
+router.post("/comment/:id", isAuthenticate, commentOnBlog);
+router.get("/getcomments/:id", getComments);
 
 export default router;
