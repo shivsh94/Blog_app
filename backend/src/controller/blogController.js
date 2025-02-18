@@ -89,13 +89,12 @@ export const getUserBlogs = async (req, res) => {
 
         const blogs = await Blog.find({ author_id: userID });
         // console.log(blogs);
-        
 
         if (blogs.length === 0) {
             return res.status(200).json({ success: true, blogs: [] });
         }
-
-        res.status(200).json({ success: true, blogs });
+        
+        res.status(200).json({ success: true, blogs, post });
     } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, message: "Something went wrong in fetching user blogs" });
@@ -158,3 +157,6 @@ export const getComments = async (req, res) => {
         res.status(500).json({ success: false, message: "Something went wrong in fetching comments" });
     }
 }
+
+
+

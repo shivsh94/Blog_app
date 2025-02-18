@@ -14,7 +14,28 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    followers:[],
+
+    following:[],
+
+    post:[],
+
+    bio:{
+        type:String
+    },
+    social:{
+        twitter:{
+            type:String
+        },
+        linkedin:{
+            type:String
+        },
+        instagram:{
+            type:String
+        }
     }
+
 })
 
 export default mongoose.model('User',userSchema);
