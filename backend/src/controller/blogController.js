@@ -94,7 +94,7 @@ export const getUserBlogs = async (req, res) => {
             return res.status(200).json({ success: true, blogs: [] });
         }
         
-        res.status(200).json({ success: true, blogs, post });
+        res.status(200).json({ success: true, blogs});
     } catch (error) {
         console.log(error);
         res.status(500).json({ success: false, message: "Something went wrong in fetching user blogs" });

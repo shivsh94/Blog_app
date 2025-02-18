@@ -32,7 +32,7 @@ function BlogCard({ blog }) {
 
     return (
         <>
-            <div className="relative p-2 mt-15 rounded-lg shadow-lg bg-gray-900 bg-opacity-90 border border-gray-700 transition-transform transform hover:scale-105 hover:shadow-xl">
+            <div className="relative h-full p-2 mt-15 rounded-lg shadow-lg bg-gray-900 bg-opacity-90 border border-gray-700 transition-transform transform hover:scale-105 hover:shadow-xl">
                 <div className="flex justify-between items-center">
                     <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-300 to-purple-400 text-transparent bg-clip-text drop-shadow-lg">{blog.title}</h3>
                     {location.pathname === "/myblogs" && (

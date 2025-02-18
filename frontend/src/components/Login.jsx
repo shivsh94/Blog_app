@@ -77,12 +77,12 @@ function Login() {
         }
     };
     return (
-        <div className='flex items-center justify-center min-h-screen bg-gray-100'>
-            <div className='bg-white p-8 rounded-lg shadow-lg w-96'>
-                <h1 className='text-2xl font-bold text-center mb-6'>Login</h1>
+        <div className='flex items-center justify-center min-h-screen bg-black'>
+            <div className='bg-gray-900 bg-opacity-90 border border-gray-700 p-8 rounded-lg shadow-lg w-96'>
+                <h1 className='text-stone-50 text-2xl font-bold text-center mb-6'>Login</h1>
                 <form>
                     <div className='mb-4'>
-                        <label className='text-gray-700 text-lg font-medium'>
+                        <label className='text-amber-50 text-lg font-medium'>
                             Email
                         </label>
                         <input
@@ -91,20 +91,20 @@ function Login() {
                             onChange={handleChange}
                             value={formData.email}
                             placeholder='Enter Email'
-                            className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400'
+                            className='w-full px-4 py-2 text-amber-50 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400'
                             required
                         />
                     </div>
 
                     <div className='mb-4'>
-                        <label className='text-gray-700 text-lg font-medium'>Password</label>
+                        <label className='text-amber-50 text-lg font-medium'>Password</label>
                         <input
-                            type="text"
+                            type="text"             
                             placeholder='Password'
                             onChange={handleChange}
                             value={formData.password}
                             name='password'
-                            className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400'
+                            className='w-full text-amber-50 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400'
                             required
                         />
                     </div>
